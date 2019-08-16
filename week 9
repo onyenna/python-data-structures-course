@@ -1,0 +1,23 @@
+file = input("Enter file:")
+
+fh = open(file)
+lq = dict()
+for line in fh:
+    if line.startswith('From:'):
+        lines = line.split()[1]
+        #print(lines)
+        if lines not in lq:
+            lq[lines] = 1
+        else:
+            lq[lines] = lq[lines]+1
+            
+            
+#print(lq)            
+bigcount = None            
+bigword = None
+
+for word,count in lq.items():
+    if bigcount is None or count > bigcount:
+        bigcount = count
+        bigword = word
+print(bigword,bigcount)       
